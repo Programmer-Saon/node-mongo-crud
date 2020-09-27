@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Look mom, I have a mongo database</h1>
+    <form action="/Products"  method="post">
+        <input type="text" placeholder="name", name="name"><br>
+
+    <input type="text" placeholder="price", name="price">
+<br>
+    <input type="text" placeholder="quantity", name="quantity">
+<br>
+    <button type="submit"> submit</button>
+
+   
+    </form>
+
+
+    <div id="products">
+        
+    </div>
+    <script>
+       function loadProducts(){
+        fetch("/product")
+        .then(res=> res.json())
+        .then(data =>{
+            console.log(data);
+            const container =  document.getElementById("products");
+            data.forEach(pd=>{
+                const p = document.createElement("p");
+                p.innerHTML= `${pd.name} price:${pd.price} quantity:${pd.quantity}`;
+                container.appendChild(p);
+            })
+        })
+       }
+       loadProducts();
+       //This is function for get data from database.....
+    </script>
+</body>
+</html>
